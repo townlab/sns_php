@@ -78,7 +78,12 @@ function get_password_hash($password) {
  */
 function exception_to_array(Exception $e) {
     do {
-        $ret[] = $e->getMessage();
+        // DISPLAY_SQL_STATEがFalseのとき、
+        // PDOの例外に関しては代替メッセージをセット
+        $errors[] = $e instanceof PDOException && !DISPLAY_SQL_STATE ?
+            'データベースでエラーが発生しました。' :
+            $e->getMessage()
+        ;
     } while ($e = $e->getPrevious());
     return array_reverse($ret);
 }

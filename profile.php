@@ -16,12 +16,7 @@ try {
     // 表示したいユーザーの情報を取得
     $user = DB::connect()->getUser($id);
     
-} catch (PDOException $e) {
-    
-    // DISPLAY_SQL_STATEがFalseのときは代替メッセージをセット
-    $errors = DISPLAY_SQL_STATE ? $e->getMessage() : 'データベースでエラーが発生しました。';
-    
-} catch (RuntimeException $e) {
+} catch (Exception $e) {
     
     // 例外スタックを配列に変換
     $errors = exception_to_array($e);

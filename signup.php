@@ -26,12 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // ログインページに遷移
         redirect('/login.php');
         
-    } catch (PDOException $e) {
-        
-        // DISPLAY_SQL_STATEがFalseのときは代替メッセージをセット
-        $errors[] = DISPLAY_SQL_STATE ? $e->getMessage() : 'データベースでエラーが発生しました。';
-        
-    } catch (RuntimeException $e) {
+    } catch (Exception $e) {
         
         // 例外スタックを配列に変換
         $errors = exception_to_array($e);
