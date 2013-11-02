@@ -55,7 +55,7 @@ function exception_to_array(Exception $e) {
             $e->getMessage()
         ;
     } while ($e = $e->getPrevious());
-    return array_reverse($ret);
+    return array_reverse($errors);
 }
 
 /**
