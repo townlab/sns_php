@@ -22,6 +22,18 @@ function e($message, RuntimeException $previous = null) {
 }
 
 /**
+ * UTF-8に文字コード変換。
+ * Windows環境だとPDO等の一部のメッセージがCP932で返されてくるので、
+ * これを使って変換してやる必要がある。
+ * 
+ * @param string $s
+ * @return string
+ */
+function to_utf8($s) {
+    return mb_convert_encoding($s, 'UTF-8', 'ASCII,JIS,UTF-8,CP51932,SJIS-win');
+}
+
+/**
  * 出力開始時の送信ヘッダ。
  * 文字化けを防ぐために不可欠。
  */
@@ -52,7 +64,7 @@ function exception_to_array(Exception $e) {
         // PDOの例外に関しては代替メッセージをセット
         $errors[] = $e instanceof PDOException && !DISPLAY_SQL_STATE ?
             'データベースでエラーが発生しました。' :
-            $e->getMessage()
+            to_utf8($e->getMessage())
         ;
     } while ($e = $e->getPrevious());
     return array_reverse($errors);
