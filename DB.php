@@ -167,7 +167,7 @@ class DB {
         $stmt->bindValue(1, $id, PDO::PARAM_INT);
         $stmt->execute();
         if (!$stmt->rowCount()) {
-            throw new RuntimeException('該当するユーザーが見つかりません。');
+            throw e('該当するユーザーが見つかりません。');
         }
         return $stmt->fetch();
     }
