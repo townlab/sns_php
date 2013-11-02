@@ -1,7 +1,7 @@
 <?php
 
 // 初期化
-require_once 'init.php';
+require 'init.php';
 
 // GETで受け取ったパラメータを変数として展開
 extract(filter_struct_utf8(INPUT_GET, array(

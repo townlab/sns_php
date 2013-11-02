@@ -1,7 +1,7 @@
 <?php
 
 // 初期化
-require_once 'init.php';
+require 'init.php';
 
 // ログインされていない状態を要求
 require_unlogin();

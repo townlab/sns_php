@@ -1,10 +1,10 @@
 <?php
 
 /* 設定・クラス・汎用関数を読み込む */
-require_once 'config.php';
-require_once 'DB.php';
-require_once 'Token.php';
-require_once 'Module.php';
+require 'config.php';
+require 'DB.php';
+require 'Token.php';
+require 'Module.php';
 
 /* エラーレポート設定 */
 ini_set('display_errors', 'On');
