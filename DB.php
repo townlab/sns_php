@@ -39,7 +39,6 @@ class DB {
      * アクセス権限はprivateに設定。
      *
      * @access private
-     * @throw PDOException
      */
     private function __construct() {
         $this->pdo = new PDO(

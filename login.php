@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // トークンをチェック
         Token::check($token);
-        // IDをセッションに取得取得
+        // IDをセッションに取得
         $_SESSION['user_id'] = DB::connect()->login($email, $password);
         // セッション固定攻撃対策
         session_regenerate_id(true);
