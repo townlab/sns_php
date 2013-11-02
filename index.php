@@ -10,20 +10,14 @@ try {
     
     // ログイン中のユーザー情報を取得
     $me = DB::connect()->getUser($_SESSION['user_id']);
-    
     // 全てのユーザー情報を取得
     $all = DB::connect()->getAllUsers();
     
 } catch (Exception $e) {
     
-    // 例外スタックを配列に変換
-    $errors = exception_to_array($e);
+    // エラーページに遷移
+    error_page($e);
     
-}
-
-// $errorsが空でなければエラーページに遷移
-if (!empty($errors)) {
-    redirect('/error.php', array('errors' => $errors));
 }
 
 // 出力を開始

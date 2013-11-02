@@ -18,14 +18,9 @@ try {
     
 } catch (Exception $e) {
     
-    // 例外スタックを配列に変換
-    $errors = exception_to_array($e);
+    // エラーページに遷移
+    error_page($e);
     
-}
-
-// $errorsが空でなければエラーページに遷移
-if (!empty($errors)) {
-    redirect('/error.php', array('errors' => $errors));
 }
 
 // 出力を開始

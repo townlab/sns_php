@@ -42,6 +42,33 @@ function redirect($path = '', array $params = array()) {
 }
 
 /**
+ * 例外スタックを逆順にして配列に変換。
+ * 
+ * @param Exception $e
+ */
+function exception_to_array(Exception $e) {
+    do {
+        // DISPLAY_SQL_STATEがFalseのとき、
+        // PDOの例外に関しては代替メッセージをセット
+        $errors[] = $e instanceof PDOException && !DISPLAY_SQL_STATE ?
+            'データベースでエラーが発生しました。' :
+            $e->getMessage()
+        ;
+    } while ($e = $e->getPrevious());
+    return array_reverse($ret);
+}
+
+/**
+ * エラーページへのリダイレクト。
+ * ページ表示続行不可能な致命的なエラーのときに使う。
+ *
+ * @param Exception $e 例外オブジェクト。
+ */
+function error_page($e) {
+    redirect('/error.php', array('errors' => exception_to_array($e)));
+}
+
+/**
  * ログインしている状態を要求。
  * ログインしていなければログインページに遷移。
  */
@@ -69,23 +96,6 @@ function require_unlogin() {
  */
 function get_password_hash($password) {
     return sha1(PASSWORD_KEY . $password);
-}
-
-/**
- * 例外スタックを逆順にして配列に変換。
- * 
- * @param Exception $e
- */
-function exception_to_array(Exception $e) {
-    do {
-        // DISPLAY_SQL_STATEがFalseのとき、
-        // PDOの例外に関しては代替メッセージをセット
-        $errors[] = $e instanceof PDOException && !DISPLAY_SQL_STATE ?
-            'データベースでエラーが発生しました。' :
-            $e->getMessage()
-        ;
-    } while ($e = $e->getPrevious());
-    return array_reverse($ret);
 }
 
 // http://qiita.com/items/c39b9ee695a5c2e74627 より引用。
