@@ -91,7 +91,7 @@ Token.php
 
 CSRF攻撃対策のトークン関連の処理を行うクラス。全て **静的** なコールで呼び出される(インスタンスを必要としない)。ドットインストールの例では1ページを開いているときしか想定していないが、こちらはトークンを10個まで保有するようにしているため、ある程度複数ページを出して作業しても正しく判定できる。
 
-signup.php  login.php  index.php  profile.php  logout.php
+signup.php<br />login.php<br />index.php<br />profile.php<br />logout.php
 ----------
 
 各ページ。これらに記述するロジックを可能な限り減らしている。
