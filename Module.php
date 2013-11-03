@@ -14,10 +14,10 @@ function h($s) {
  * RuntimeExceptionを生成。
  * 
  * @param string $message
- * @param RuntimeException $previous
+ * @param Exception $previous
  * @return RuntimeException
  */
-function e($message, RuntimeException $previous = null) {
+function e($message, Exception $previous = null) {
     return new RuntimeException($message, 0, $previous);
 }
 
@@ -76,7 +76,7 @@ function exception_to_array(Exception $e) {
  *
  * @param Exception $e 例外オブジェクト。
  */
-function error_page($e) {
+function error_page(Exception $e) {
     redirect('/error.php', array('errors' => exception_to_array($e)));
 }
 
