@@ -38,7 +38,7 @@ start_output();
     <h1>ユーザー一覧</h1>
     <ul>
 <?php foreach ($all as $user): ?>
-      <li><a href="profile.php?id=<?=h($user['id'])?>"><?=$user['name']?></li>
+      <li><a href="profile.php?id=<?=h($user['id'])?>"><?=h($user['name'])?></li>
 <?php endforeach; ?>
     </ul>
     <p></p>
