@@ -6,15 +6,7 @@
  * @throw PDOException
  */
 class DB {
-   
-    /**
-     * 静的プロパティ
-     */
-    private static $instance;
-   
-    /**
-     * 動的プロパティ
-     */
+    
     private $pdo;
    
     /**
@@ -27,10 +19,14 @@ class DB {
      * @return DB
      */
     public static function connect() {
-        if (!self::$instance) {
-            self::$instance = new self;
+        // $instanceの値が静的に保存されるようにする
+        static $instance;
+        // $instanceがNULLであればインスタンスを生成して格納
+        if (!$instance) {
+            $instance = new self;
         }
-        return self::$instance;
+        // インスタンスを返す
+        return $instance;
     }
    
     /**
