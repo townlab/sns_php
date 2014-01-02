@@ -52,6 +52,8 @@ class DB {
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 // PDOStatement::rowCount()をSELECTに対しても使えるように設定
                 PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+                // プリペアドステートメントのエミュレーションをOFFにする
+                PDO::ATTR_EMULATE_PREPARES => false,
             )
         );
     }
